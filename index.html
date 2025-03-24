@@ -6,25 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Detective-X | ระบบบันทึกสืบสวน">
     <meta name="author" content="Detective-X Team">
-    <meta name="theme-color" content="#3B82F6">
-    
+    <meta name="theme-color" content="#3B82F6">    
     <!-- Content Security Policy (CSP) -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://script.google.com https://fonts.googleapis.com https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' https://cdn-icons-png.flaticon.com data:; font-src 'self' https://fonts.gstatic.com; frame-src https://script.google.com; connect-src 'self' https://script.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;">
-    
     <!-- HTTPS Redirect -->
     <script>
         if (window.location.protocol !== 'https:' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
             window.location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
         }
     </script>
-    
     <title>Detective-X | ระบบบันทึกสืบสวน</title>
-    
-    <!-- Favicon -->
-    <link rel="icon" href="https://img5.pic.in.th/file/secure-sv1/IMG_3820.png" type="image/png">
-    
     <!-- ฟอนต์ที่อ่านง่ายสำหรับผู้ใช้ไทย -->
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         * {
@@ -32,7 +25,6 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
         body, html {
             height: 100%;
             width: 100%;
@@ -40,126 +32,31 @@
             font-family: 'Sarabun', sans-serif;
             background-color: #f5f5f5;
         }
-        
         .container {
             height: 100vh;
             width: 100%;
             position: relative;
         }
-        
         .iframe-container {
             position: relative;
             height: 100%;
             width: 100%;
             overflow: hidden;
         }
-        
         iframe {
             width: 100%;
             height: 100vh;
             border: none;
             display: block;
-        }
-        
-        .loading {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(255, 255, 255, 0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            z-index: 1000;
-        }
-        
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid rgba(59, 130, 246, 0.2);
-            border-radius: 50%;
-            border-top-color: #3B82F6;
-            animation: spin 1s linear infinite;
-            margin-bottom: 15px;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .error-message {
-            display: none;
-            text-align: center;
-            padding: 20px;
-            background-color: #fee2e2;
-            border: 1px solid #ef4444;
-            border-radius: 8px;
-            margin: 20px;
-            color: #b91c1c;
-        }
-        
-        /* Security Notice */
-        .security-notice {
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            background-color: rgba(59, 130, 246, 0.1);
-            border-left: 3px solid #3B82F6;
-            padding: 8px 12px;
-            border-radius: 4px;
-            font-size: 12px;
-            color: #1e40af;
-            z-index: 100;
-            max-width: 250px;
-            opacity: 0.8;
-            transition: opacity 0.3s;
-        }
-        
-        .security-notice:hover {
-            opacity: 1;
-        }
-        
-        .security-notice .secure-icon {
-            color: #10B981;
-            margin-right: 5px;
-        }
-        
+        } 
         /* สำหรับอุปกรณ์มือถือ */
         @media (max-width: 768px) {
-            .error-message {
-                font-size: 14px;
-                padding: 15px;
-                margin: 10px;
-            }
-            
-            .security-notice {
-                bottom: 5px;
-                right: 5px;
-                font-size: 10px;
-                max-width: 200px;
-            }
+            /* CSS สำหรับอุปกรณ์มือถือ (ถ้าจำเป็น) */
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- ส่วนแสดงการโหลด -->
-        <div class="loading" id="loading">
-            <div class="spinner"></div>
-            <p>กำลังโหลดระบบ Detective-X...</p>
-        </div>
-        
-        <!-- ข้อความแสดงเมื่อเกิดข้อผิดพลาด -->
-        <div class="error-message" id="error-message">
-            <h3>ไม่สามารถโหลดระบบได้</h3>
-            <p>โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณ หรือลองรีเฟรชหน้านี้</p>
-            <button onclick="location.reload()" style="margin-top: 10px; padding: 8px 16px; background-color: #3B82F6; color: white; border: none; border-radius: 4px; cursor: pointer;">ลองใหม่</button>
-        </div>
-        
-        <!-- ส่วนแสดง iframe -->
         <div class="iframe-container">
             <iframe 
                 id="app-frame" 
@@ -172,71 +69,9 @@
                 sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-downloads">
             </iframe>
         </div>
-        
-        <!-- แสดงสถานะความปลอดภัย -->
-        <div class="security-notice" id="security-notice">
-            <span class="secure-icon">🔒</span> เชื่อมต่อผ่าน HTTPS อย่างปลอดภัย
-        </div>
     </div>
     
     <script>
-        // ตรวจสอบโปรโตคอล HTTPS
-        document.addEventListener('DOMContentLoaded', function() {
-            const securityNotice = document.getElementById('security-notice');
-            
-            if (window.location.protocol === 'https:') {
-                securityNotice.innerHTML = '<span class="secure-icon">🔒</span> เชื่อมต่อผ่าน HTTPS อย่างปลอดภัย';
-            } else {
-                securityNotice.innerHTML = '<span style="color: #ef4444;">⚠️</span> เชื่อมต่อผ่าน HTTP (ไม่ปลอดภัย)';
-                securityNotice.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
-                securityNotice.style.borderLeftColor = '#ef4444';
-                securityNotice.style.color = '#b91c1c';
-            }
-            
-            // ซ่อนการแจ้งเตือนหลังจาก 5 วินาที
-            setTimeout(function() {
-                securityNotice.style.opacity = '0';
-                setTimeout(function() {
-                    securityNotice.style.display = 'none';
-                }, 1000);
-            }, 5000);
-        });
-        
-        // ตรวจสอบการโหลด iframe
-        window.addEventListener('DOMContentLoaded', function() {
-            const iframe = document.getElementById('app-frame');
-            const loading = document.getElementById('loading');
-            const errorMessage = document.getElementById('error-message');
-            let loadTimeout;
-            
-            // ตั้งเวลาสำหรับการโหลดที่ช้ามาก
-            loadTimeout = setTimeout(function() {
-                loading.style.display = 'none';
-                errorMessage.style.display = 'block';
-            }, 30000); // 30 วินาที
-            
-            // เมื่อ iframe โหลดเสร็จ
-            iframe.onload = function() {
-                clearTimeout(loadTimeout);
-                loading.style.display = 'none';
-            };
-            
-            // จัดการกรณีเกิดข้อผิดพลาด
-            iframe.onerror = function() {
-                clearTimeout(loadTimeout);
-                loading.style.display = 'none';
-                errorMessage.style.display = 'block';
-            };
-        });
-        
-        // ตรวจจับข้อผิดพลาดเมื่อไม่สามารถโหลด iframe ได้
-        window.addEventListener('error', function(e) {
-            if (e.target.tagName === 'IFRAME') {
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById('error-message').style.display = 'block';
-            }
-        }, true);
-        
         // บันทึกความล้มเหลวของ CSP ในคอนโซล (สำหรับการดีบัก)
         document.addEventListener('securitypolicyviolation', function(e) {
             console.error('CSP Violation:', e.blockedURI, 'violated', e.violatedDirective);
